@@ -38,5 +38,6 @@ func main() {
 	router.GET("/ping", handlers.Ping)
 	router.POST("/upload", handlers.Upload)
 	router.GET("/list", handlers.List)
+	router.GET("/folder", handlers.Folder)
 	router.Run(":8080")
 }

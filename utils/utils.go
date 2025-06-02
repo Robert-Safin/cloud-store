@@ -58,3 +58,12 @@ func Write_server_success(c *gin.Context, msg string) {
 		"message": msg,
 	})
 }
+
+func GetConfig(c *gin.Context) (CFG, bool) {
+	val, exists := c.Get("config")
+	if !exists {
+		return CFG{}, false
+	}
+	cfg, ok := val.(CFG)
+	return cfg, ok
+}

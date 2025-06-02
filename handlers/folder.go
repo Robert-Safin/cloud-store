@@ -11,13 +11,11 @@ import (
 )
 
 func Folder(c *gin.Context) {
-	cfgVal, exists := c.Get("config")
+	cfg, exists := utils.GetConfig(c)
 
 	if !exists {
-		utils.Write_server_error(c, "internal error")
-		return
+		utils.Write_server_error(c, "config not found")
 	}
-	cfg := cfgVal.(utils.CFG)
 
 	path := c.Query("path")
 	if path == "" {
@@ -25,9 +23,15 @@ func Folder(c *gin.Context) {
 		return
 	}
 
+	name := c.Query("name")
+	if name == "" {
+		utils.Write_server_error(c, "name is required")
+		return
+	}
+
 	_, err := cfg.Aws_client.PutObject(context.TODO(), &s3.PutObjectInput{
 		Bucket: aws.String(cfg.Bucket_name),
-		Key:    aws.String(path),
+		Key:    aws.String(path + "/" + name + "/"),
 		Body:   http.NoBody,
 	})
 

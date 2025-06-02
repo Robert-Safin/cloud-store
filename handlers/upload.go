@@ -12,12 +12,10 @@ import (
 func Upload(c *gin.Context) {
 
 	// get configs
-	cfgVal, exists := c.Get("config")
+	cfg, exists := utils.GetConfig(c)
 	if !exists {
-		utils.Write_server_error(c, "internal error")
-		return
+		utils.Write_server_error(c, "config not found")
 	}
-	cfg := cfgVal.(utils.CFG)
 
 	file, err := c.FormFile("file")
 	if err != nil {
@@ -53,41 +51,3 @@ func Upload(c *gin.Context) {
 
 	utils.Write_server_success(c, "ok")
 }
-
-// func Upload(c *gin.Context) {
-
-// 	// get configs
-// 	cfgVal, exists := c.Get("config")
-// 	if !exists {
-// 		utils.Write_server_error(c, "internal error")
-// 		return
-// 	}
-// 	cfg := cfgVal.(utils.CFG)
-
-// 	// get form-data
-// 	localFilePath := "./sample.txt"
-// 	// path := "a/b/c"
-// 	file, err := os.Open(localFilePath)
-// 	if err != nil {
-// 		utils.Write_server_error(c, "could not open file")
-// 		return
-// 	}
-// 	defer file.Close()
-
-// 	// join s3 path
-// 	_, filename := filepath.Split(localFilePath)
-
-// 	// upload
-// 	_, err = cfg.Aws_client.PutObject(context.TODO(), &s3.PutObjectInput{
-// 		Bucket: aws.String(cfg.Bucket_name),
-// 		Key:    aws.String(filename),
-// 		Body:   file,
-// 	})
-
-// 	if err != nil {
-// 		utils.Write_server_error(c, "s3 upload error")
-// 		return
-// 	}
-
-// 	utils.Write_server_success(c, "upload successful")
-// }

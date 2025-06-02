@@ -1,8 +1,10 @@
 import { useState } from "react";
 import usePath from "../hooks/usePath";
+import { useQueryClient } from "@tanstack/react-query";
 
 function Uploader() {
   const { path } = usePath();
+  const queryClient = useQueryClient();
 
   const [file, setFile] = useState<Blob | null>(null);
 
@@ -29,8 +31,12 @@ function Uploader() {
         body: formData,
       });
 
-      const data = await res.json();
-      console.log("Response:", data);
+      if (!res.ok) {
+        throw new Error("server could not upload");
+      }
+      queryClient.invalidateQueries({
+        queryKey: ["directory", path],
+      });
     } catch (err) {
       console.error("Upload failed:", err);
     }

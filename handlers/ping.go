@@ -1,12 +1,10 @@
 package handlers
 
 import (
+	"github.com/Robert-Safin/cloud-store/utils"
 	"github.com/gin-gonic/gin"
 )
 
 func Ping(c *gin.Context) {
-	// c.Get("config")
-	// env, err := utils.Load_env()
-	// utils.Panic_on_err(err)
-	// fmt.Printf("%s", env.Bucket_name)
+	utils.Write_server_success(c, "ok")
 }

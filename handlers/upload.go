@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"context"
+	"strings"
 
 	"github.com/Robert-Safin/cloud-store/utils"
 	"github.com/aws/aws-sdk-go-v2/aws"
@@ -20,6 +21,11 @@ func Upload(c *gin.Context) {
 	file, err := c.FormFile("file")
 	if err != nil {
 		utils.Write_server_error(c, "no file received")
+		return
+	}
+
+	if strings.Contains(file.Filename, "/") {
+		utils.Write_server_error(c, "name can not have any '/'")
 		return
 	}
 

@@ -1,10 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import usePathStore from "../stores/usePathStore";
+
 
 type Directory = { files: string[]; folders: string[] };
 
 function usePath() {
-  const [path, setPath] = useState<string>("root");
+  const { path, setPath, forward, back } = usePathStore();
 
   const { data, refetch } = useQuery<Directory>({
     queryKey: ["directory", path],
@@ -20,18 +21,6 @@ function usePath() {
       };
     },
   });
-
-  function forward(target: string) {
-    const updated = path + "/" + target;
-    setPath(updated);
-  }
-
-  function back() {
-    if (path === "root") return;
-    const split = path.split("/");
-    split.pop();
-    setPath(split.join("/"));
-  }
 
   return {
     path,

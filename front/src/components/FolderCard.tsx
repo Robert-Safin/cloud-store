@@ -1,3 +1,5 @@
+import { FaFolderOpen } from "react-icons/fa6";
+
 type Props = {
   name: string;
   currentPath: string;
@@ -11,9 +13,14 @@ function FolderCard(props: Props) {
     .replace("/", "");
 
   return (
-    <div className="border-2 flex flex-col items-center justify-center px-8 py-16">
-      <p>folder</p>
-      <p onClick={() => props.onClick(stripped)}>{stripped}</p>
+    <div
+      className="flex flex-col min-w-[120px] max-w-[120px] min-h-[120px] max-h-[120px]"
+      onClick={() => props.onClick(stripped)}
+    >
+      <div className="flex flex-col px-3 space-y-2">
+        <FaFolderOpen className="text-4xl" />
+        <p className="text-sm break-all line-clamp-4">{stripped}</p>
+      </div>
     </div>
   );
 }

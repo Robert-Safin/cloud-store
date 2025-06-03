@@ -1,21 +1,38 @@
-import type { Directory } from "../App";
+import usePath from "../hooks/usePath";
 import FileCard from "./FileCard";
 import FolderCard from "./FolderCard";
 
-
-
-
-
-
-function View(props:Directory) {
+function View() {
+  const { path, contents, forward } = usePath();
   return (
-    <div className="grid grid-cols-4">
-      {props?.folders?.map((f, i) => (
-        <FolderCard key={i} name={f} currentPath={path} onClick={updatePath} />
-      ))}
-      {props?.files?.map((f, i) => (
-        <FileCard key={i} name={f} currentPath={path} />
-      ))}
+    <div className="flex flex-col space-y-8  bg-slate-900 p-4">
+      {contents?.files && contents?.folders ? (
+        <>
+          <div className="flex flex-col space-y-4">
+            <h2 className="text-2xl">Folders</h2>
+            <div className="flex flex-wrap space-x-4">
+              {contents?.folders?.map((f, i) => (
+                <FolderCard
+                  key={i}
+                  name={f}
+                  currentPath={path}
+                  onClick={forward}
+                />
+              ))}
+            </div>
+          </div>
+          <div className="flex flex-col space-y-4">
+            <h2 className="text-2xl">Files</h2>
+            <div className="flex flex-wrap space-x-4">
+              {contents?.files?.map((f, i) => (
+                <FileCard key={i} name={f} currentPath={path} />
+              ))}
+            </div>
+          </div>
+        </>
+      ) : (
+        <h1 className="text-3xl text-center">Nothing here</h1>
+      )}
     </div>
   );
 }

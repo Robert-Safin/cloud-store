@@ -3,6 +3,7 @@ package handlers
 import (
 	"context"
 	"net/http"
+	"strings"
 
 	"github.com/Robert-Safin/cloud-store/utils"
 	"github.com/aws/aws-sdk-go-v2/aws"
@@ -26,6 +27,11 @@ func Folder(c *gin.Context) {
 	name := c.Query("name")
 	if name == "" {
 		utils.Write_server_error(c, "name is required")
+		return
+	}
+
+	if strings.Contains(name, "/") {
+		utils.Write_server_error(c, "name can not have any '/'")
 		return
 	}
 

@@ -40,7 +40,7 @@ function MakeFolderButton() {
   return (
     <div>
       <h4 className="mb-1">Create folder</h4>
-      <div className="flex border-2 rounded-md h-[50px]">
+      <div className="flex border-1 rounded-md h-[50px]">
         <input
           className="px-4 py-2"
           placeholder="Name"
@@ -48,7 +48,7 @@ function MakeFolderButton() {
           onChange={(e) => setName(e.target.value)}
         />
         <button onClick={() => makeFolder()} className="px-4 py-2">
-          <FaFolderPlus className="text-2xl" />
+          <FaFolderPlus className="text-2xl cursor-pointer" />
         </button>
       </div>
     </div>

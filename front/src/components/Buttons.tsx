@@ -5,12 +5,12 @@ import Uploader from "./Uploader";
 
 function Buttons() {
   return (
-    <div className="flex flex-col bg-slate-700 p-2 space-y-4">
+    <div className="flex flex-col bg-slate-700 p-2 space-y-4 rounded-t-lg">
       <div className="flex items-center space-x-8">
         <BackButton />
         <Crumbs />
       </div>
-      <div className="flex items-center space-x-8 justify-between">
+      <div className="flex flex-col md:flex-row md:items-center space-x-8 justify-between ">
         <Uploader/>
         <MakeFolderButton />
       </div>

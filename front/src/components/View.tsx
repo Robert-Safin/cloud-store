@@ -5,7 +5,7 @@ import FolderCard from "./FolderCard";
 function View() {
   const { path, contents, forward } = usePath();
   return (
-    <div className="flex flex-col space-y-8  bg-slate-900 p-4">
+    <div className="flex flex-col space-y-8  bg-slate-900 p-4 rounded-b-lg">
       {contents?.files && contents?.folders ? (
         <>
           <div className="flex flex-col space-y-4">

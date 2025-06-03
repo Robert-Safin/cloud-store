@@ -61,11 +61,11 @@ function Uploader() {
   };
 
   return (
-    <div>
+    <div className="w-full md:w-auto">
       <h4 className="mb-1">Upload file</h4>
       <form
         onSubmit={handleSubmit}
-        className="flex border-2 rounded-md p-2 items-center space-x-4 h-[50px]"
+        className="flex border-1 rounded-md p-2 items-center space-x-4 h-[50px]"
       >
         <input
           ref={inputRef}
@@ -82,7 +82,7 @@ function Uploader() {
         </button>
         <p className="truncate text-slate-400">{file ? file.name : "No file selected"}</p>
         <button type="submit" className="">
-          <MdDriveFolderUpload className="text-3xl" />
+          <MdDriveFolderUpload className="text-3xl cursor-pointer" />
         </button>
       </form>
     </div>

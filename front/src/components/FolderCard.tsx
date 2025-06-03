@@ -14,12 +14,12 @@ function FolderCard(props: Props) {
 
   return (
     <div
-      className="flex flex-col min-w-[120px] max-w-[120px] min-h-[120px] max-h-[120px]"
+      className="flex flex-col min-w-[120px] max-w-[120px] min-h-[120px] max-h-[120px] cursor-pointer group"
       onClick={() => props.onClick(stripped)}
     >
-      <div className="flex flex-col px-3 space-y-2">
-        <FaFolderOpen className="text-4xl" />
-        <p className="text-sm break-all line-clamp-4">{stripped}</p>
+      <div className="flex flex-col px-3 p-2 space-y-2">
+        <FaFolderOpen className="text-4xl mx-auto group-hover:text-slate-400" />
+        <p className="text-sm break-all line-clamp-4 text-center group-hover:text-slate-400">{stripped}</p>
       </div>
     </div>
   );

@@ -21,7 +21,7 @@ function MakeFolderButton() {
     }
     try {
       const res = await fetch(
-        `http://localhost:8080/folder?path=${path}&name=${name}`
+        `http://localhost:8080/folder?path=${path}&name=${name}`,
       );
 
       if (!res.ok) {
@@ -40,7 +40,7 @@ function MakeFolderButton() {
   return (
     <div>
       <h4 className="mb-1">Create folder</h4>
-      <div className="flex border-1 rounded-md h-[50px]">
+      <div className="flex h-[50px] rounded-md border-1">
         <input
           className="px-4 py-2"
           placeholder="Name"
@@ -48,7 +48,7 @@ function MakeFolderButton() {
           onChange={(e) => setName(e.target.value)}
         />
         <button onClick={() => makeFolder()} className="px-4 py-2">
-          <FaFolderPlus className="text-2xl cursor-pointer" />
+          <FaFolderPlus className="cursor-pointer text-2xl" />
         </button>
       </div>
     </div>

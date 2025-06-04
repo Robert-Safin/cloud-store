@@ -65,7 +65,7 @@ function Uploader() {
       <h4 className="mb-1">Upload file</h4>
       <form
         onSubmit={handleSubmit}
-        className="flex border-1 rounded-md p-2 items-center space-x-4 h-[50px]"
+        className="flex h-[50px] items-center space-x-4 rounded-md border-1 p-2"
       >
         <input
           ref={inputRef}
@@ -76,13 +76,15 @@ function Uploader() {
         <button
           type="button"
           onClick={handleClick}
-          className="bg-slate-400 rounded-sm py-1 px-2 text-slate-900"
+          className="rounded-sm bg-slate-400 px-2 py-1 text-slate-900"
         >
           Select File
         </button>
-        <p className="truncate text-slate-400">{file ? file.name : "No file selected"}</p>
+        <p className="truncate text-slate-400">
+          {file ? file.name : "No file selected"}
+        </p>
         <button type="submit" className="">
-          <MdDriveFolderUpload className="text-3xl cursor-pointer" />
+          <MdDriveFolderUpload className="cursor-pointer text-3xl" />
         </button>
       </form>
     </div>

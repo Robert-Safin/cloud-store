@@ -11,11 +11,7 @@ function Alert() {
     <>
       {alert.show && (
         <div
-          className={`absolute bottom-8 right-8 p-4
-            rounded-4xl
-          border-2
-          ${alert.type === "error" ? "border-red-400 text-red-400" : ""}
-        `}
+          className={`absolute right-8 bottom-8 rounded-4xl border-2 p-4 ${alert.type === "error" ? "border-red-400 text-red-400" : ""} `}
         >
           <p>{alert.msg}</p>
         </div>

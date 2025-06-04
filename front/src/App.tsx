@@ -7,7 +7,7 @@ function App() {
     <div className="h-screen w-full font-mono">
       <Buttons />
       <View />
-      <Alert/>
+      <Alert />
     </div>
   );
 }

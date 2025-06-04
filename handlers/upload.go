@@ -12,7 +12,6 @@ import (
 
 func Upload(c *gin.Context) {
 
-	// get configs
 	cfg, exists := utils.GetConfig(c)
 	if !exists {
 		utils.Write_server_error(c, "config not found")

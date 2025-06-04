@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import usePathStore from "../stores/usePathStore";
 
-
 type Directory = { files: string[]; folders: string[] };
 
 function usePath() {

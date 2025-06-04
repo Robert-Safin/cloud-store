@@ -11,13 +11,10 @@ import (
 )
 
 func List(c *gin.Context) {
-	cfgVal, exists := c.Get("config")
-
+	cfg, exists := utils.GetConfig(c)
 	if !exists {
-		utils.Write_server_error(c, "internal error")
-		return
+		utils.Write_server_error(c, "config not found")
 	}
-	cfg := cfgVal.(utils.CFG)
 
 	path := c.Query("path")
 
@@ -48,7 +45,10 @@ func List(c *gin.Context) {
 	for _, cp := range output.CommonPrefixes {
 		folders = append(folders, *cp.Prefix)
 	}
-
+	// fmt.Println("__________________________")
+	// fmt.Println(folders)
+	// fmt.Println(files)
+	// fmt.Println("__________________________")
 	c.JSON(http.StatusOK, gin.H{
 		"folders": folders,
 		"files":   files,
